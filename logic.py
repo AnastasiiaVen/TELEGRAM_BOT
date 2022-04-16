@@ -10,12 +10,24 @@ def draw_board(board):
         print ("|", board[0+i*3], "|", board[1+i*3], "|", board[2+i*3], "|")
         print ("-" * 13)
 def take_NPC_turn(player_token):
+    win_coord = ((0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6))
     valid = False
     while not valid:
-        NPC_turn = random.randint(1, 9)
-        if (str(board[NPC_turn-1]) not in "XO"):
-            board[NPC_turn-1] = player_token
+        for each in win_coord:
+            if "XO" not in each:
+                NPC_turn = random.randint(0, len(each) - 1)
+                valid = True
+        else:
+            avalible = False
+            while not avalible:   
+                NPC_turn = random.randint(1, 9)
+                if (str(board[NPC_turn-1]) not in "XO"):
+                    board[NPC_turn-1] = player_token
+                    avalible = True
             valid = True
+
+
+
 def take_input(player_token):
     valid = False
     while not valid:
@@ -44,6 +56,7 @@ def main(board):
             take_input("X")
         else:
             take_NPC_turn("O")
+            print('Ход NPC.')
             #take_input("O")
         counter += 1
         if counter > 4:
