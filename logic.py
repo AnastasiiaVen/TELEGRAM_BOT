@@ -1,4 +1,4 @@
-
+import random
 import back_logic as bl
 
 
@@ -9,7 +9,13 @@ def draw_board(board):
     for i in range(3):
         print ("|", board[0+i*3], "|", board[1+i*3], "|", board[2+i*3], "|")
         print ("-" * 13)
-
+def take_NPC_turn(player_token):
+    valid = False
+    while not valid:
+        NPC_turn = random.randint(1, 9)
+        if (str(board[NPC_turn-1]) not in "XO"):
+            board[NPC_turn-1] = player_token
+            valid = True
 def take_input(player_token):
     valid = False
     while not valid:
@@ -27,6 +33,8 @@ def take_input(player_token):
                 print ("Эта клеточка уже занята")
         else:
             print ("Некорректный ввод. Введите число от 1 до 9 чтобы походить.")
+
+
 def main(board):
     counter = 0
     win = False
@@ -35,7 +43,8 @@ def main(board):
         if counter % 2 == 0:
             take_input("X")
         else:
-            take_input("O")
+            take_NPC_turn("O")
+            #take_input("O")
         counter += 1
         if counter > 4:
             tmp = bl.check_win(board)
