@@ -17,7 +17,7 @@ def who_is_first():
     draw = False
     while not draw:
         hidden_number = random.randint(0,10)
-        user_choice = int(input("I'll pick a digit zero to 9. Insert digit from 0 to 9. If you will be closer than NPC to my digit - your turn will be first!"))
+        user_choice = int(input("I'll pick a digit zero to 9. Insert digit from 0 to 9. If you will be closer than NPC to my digit - your turn will be first! "))
         npc_choice = random.randint(0,10)
         if abs(hidden_number - user_choice) == abs(hidden_number - npc_choice):
             print(f"I'd picked {hidden_number}. You took {user_choice}, but NPC took {npc_choice}. This means a draw! One more time")
