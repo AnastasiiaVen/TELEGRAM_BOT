@@ -5,6 +5,8 @@ import math
 
 board = list(range(1, 10))
 
+def transfer_board(board):
+    return board
 
 def draw_board(board):
     print("-" * 13)
